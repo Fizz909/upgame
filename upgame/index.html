@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UPGAME</title>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
+
+body{
+  min-height: 100vh;
+  background: linear-gradient(
+    135deg,
+    #000000,
+    #001a33,
+    #003d2e,
+    #000000
+  );
+  background-size: 400% 400%;
+  animation: bgMove 10s ease infinite;
+  color:#fff;
+}
+
+@keyframes bgMove {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+}
+
+/* NAV */
+.nav{
+  position:fixed;
+  width:100%;
+  top:0;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:10px 25px;
+  background:rgba(0,0,0,0.65);
+  backdrop-filter: blur(6px);
+  border-bottom:1px solid #111;
+  z-index:1000;
+}
+
+.logo img{
+  width:70px;
+  height:70px;
+  object-fit:cover;
+}
+
+.menu{
+  display:flex;
+  gap:20px;
+  color:#aaa;
+  font-size:14px;
+}
+
+.menu span:hover{
+  color:#fff;
+  cursor:pointer;
+}
+
+.contact{
+  color:#fff;
+  font-size:14px;
+  padding:6px 12px;
+  border:1px solid #222;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+.contact:hover{
+  border-color:#22c55e;
+  color:#22c55e;
+}
+
+/* HERO */
+.hero{
+  height:90vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+}
+
+.hero-logo{
+  width:220px;
+  margin-bottom:20px;
+  filter:drop-shadow(0 0 20px #22c55e55);
+}
+
+.hero h1{
+  font-size:55px;
+}
+
+.gradient{
+  background:linear-gradient(90deg,#22c55e,#3b82f6);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
+.hero p{
+  color:#aaa;
+  margin:15px 0;
+}
+
+/* SECTION */
+.section{
+  padding:80px 40px;
+  max-width:1200px;
+  margin:auto;
+}
+
+.section h2{
+  text-align:center;
+  margin-bottom:40px;
+  font-size:32px;
+}
+
+/* GAMES */
+.games{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:25px;
+}
+
+.game{
+  background:#111;
+  padding:25px;
+  border-radius:15px;
+  border:1px solid #222;
+  transition:0.3s;
+}
+
+.game:hover{
+  border-color:#22c55e;
+  box-shadow:0 0 25px #22c55e33;
+  transform:scale(1.03);
+}
+
+/* TIMELINE */
+.timeline{
+  position:relative;
+  max-width:800px;
+  margin:auto;
+  padding-left:40px;
+  border-left:2px solid #222;
+}
+
+.timeline-item{
+  position:relative;
+  margin-bottom:50px;
+}
+
+.timeline-icon{
+  position:absolute;
+  left:-30px;
+  top:0;
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  background:linear-gradient(90deg,#22c55e,#3b82f6);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 0 15px #22c55e55;
+}
+
+.timeline-icon svg{
+  width:20px;
+  height:20px;
+  color:#000;
+}
+
+.timeline-content{
+  background:#111;
+  padding:20px;
+  border-radius:12px;
+  border:1px solid #222;
+}
+
+.timeline-content:hover{
+  border-color:#3b82f6;
+  box-shadow:0 0 20px #3b82f633;
+}
+
+/* STORE */
+.store{
+  display:flex;
+  justify-content:center;
+}
+
+.product{
+  display:flex;
+  gap:60px;
+  background:#111;
+  padding:50px;
+  border-radius:20px;
+  border:1px solid #222;
+  max-width:1100px;
+  width:100%;
+  align-items:center;
+}
+
+.gallery{
+  position:relative;
+}
+
+.gallery img{
+  width:350px;
+  border-radius:15px;
+}
+
+.arrow{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  background:#000a;
+  border:none;
+  color:#fff;
+  font-size:24px;
+  padding:10px 15px;
+  cursor:pointer;
+  border-radius:8px;
+}
+
+.arrow.left{ left:-20px; }
+.arrow.right{ right:-20px; }
+
+.product-info h3{
+  font-size:28px;
+}
+
+.desc{
+  color:#aaa;
+  margin:20px 0;
+}
+
+.price{
+  font-size:28px;
+  color:#22c55e;
+  margin-bottom:20px;
+}
+
+.link-btn{
+  padding:12px 25px;
+  border-radius:10px;
+  background:linear-gradient(90deg,#22c55e,#3b82f6);
+  color:#000;
+  font-weight:bold;
+  text-decoration:none;
+}
+
+/* FOOTER */
+.footer{
+  text-align:center;
+  padding:30px;
+  border-top:1px solid #111;
+  margin-top:50px;
+  color:#777;
+}
+
+#particles{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  z-index:-1;
+  pointer-events:none;
+}
+
+.game-card{
+  position:relative;
+  border-radius:16px;
+  overflow:hidden;
+  border:1px solid #222;
+  cursor:pointer;
+  transition:0.3s;
+  height:200px;
+}
+
+.game-card img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  filter:brightness(0.6);
+  transition:0.3s;
+}
+
+.game-card:hover img{
+  transform:scale(1.1);
+  filter:brightness(0.8);
+}
+
+.game-info{
+  position:absolute;
+  bottom:0;
+  left:0;
+  width:100%;
+  padding:15px;
+  background:linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+}
+
+.game-info h3{
+  font-size:18px;
+}
+
+.game-info p{
+  font-size:12px;
+  color:#aaa;
+}
+
+.img-slider{
+  position:relative;
+  width:100%;
+  height:200px;
+  overflow:hidden;
+  border-radius:16px;
+}
+
+.game-img{
+  position:absolute;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  opacity:0;
+  transition:0.8s ease;
+  filter:brightness(0.6);
+}
+
+.game-img.active{
+  opacity:1;
+}
+</style>
+</head>
+
+<body>
+<canvas id="particles"></canvas>
+<div class="nav">
+  <div class="logo">
+    <img src="nav-logo.png">
+  </div>
+
+  <div class="contact">
+    Contato
+  </div>
+</div>
+
+<section class="hero">
+  <img src="logo.png" class="hero-logo">
+  <h1>Jogue. Evolua. <span class="gradient">Vença.</span></h1>
+  <p>Organização competitiva de eSports</p>
+</section>
+
+<section class="section">
+<h2>Competitivo</h2>
+
+<div class="games">
+
+<div class="game-card">
+  <div class="img-slider">
+    <img class="game-img active" src="valorant.jpg">
+    <img class="game-img" src="valorant2.jpg">
+  </div>
+  <div class="game-info">
+    <h3>Valorant</h3>
+    <p>FPS tático competitivo</p>
+  </div>
+</div>
+
+<div class="game-card">
+  <div class="img-slider">
+    <img class="game-img active" src="r6mobile.jpg">
+    <img class="game-img" src="r6mobile2.png">
+  </div>
+  <div class="game-info">
+    <h3>R6 Mobile</h3>
+    <p>Estratégia e ação mobile</p>
+  </div>
+</div>
+
+<div class="game-card">
+  <div class="img-slider">
+    <img class="game-img active" src="lol1.jpg">
+    <img class="game-img" src="lol2.jpg">
+  </div>
+  <div class="game-info">
+    <h3>League of Legends</h3>
+    <p>MOBA competitivo clássico</p>
+  </div>
+</div>
+
+</div>
+</section>
+
+<section class="section">
+<h2>Linha do Tempo</h2>
+
+<div class="timeline">
+
+<div class="timeline-item">
+<div class="timeline-icon"><i data-lucide="flag"></i></div>
+<div class="timeline-content">
+<h3>2025 - Fundação</h3>
+<p>Criação da UP GAME com foco no cenário competitivo mobile.</p>
+</div>
+</div>
+
+<div class="timeline-item">
+<div class="timeline-icon"><i data-lucide="trending-up"></i></div>
+<div class="timeline-content">
+<h3>Expansão</h3>
+<p>Organização de torneios e crescimento da comunidade competitiva.</p>
+</div>
+</div>
+
+<div class="timeline-item">
+<div class="timeline-icon"><i data-lucide="trophy"></i></div>
+<div class="timeline-content">
+<h3>2026 - Marco</h3>
+<p>Primeiro torneio oficial de Rainbow Six Mobile com a Ubisoft.</p>
+</div>
+</div>
+
+<div class="timeline-item">
+<div class="timeline-icon"><i data-lucide="users"></i></div>
+<div class="timeline-content">
+<h3>Equipe</h3>
+<p>Criação do time competitivo focado em alto desempenho.</p>
+</div>
+</div>
+
+<div class="timeline-item">
+<div class="timeline-icon"><i data-lucide="rocket"></i></div>
+<div class="timeline-content">
+<h3>Atualidade</h3>
+<p>UP GAME consolidada como organização competitiva em crescimento.</p>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- 🔥 LOJA RESTAURADA -->
+<section class="section">
+<h2>Loja Oficial</h2>
+
+<div class="store">
+<div class="product">
+
+<div class="gallery">
+<button class="arrow left">&#10094;</button>
+<img id="productImage" src="camisa1.png">
+<button class="arrow right">&#10095;</button>
+</div>
+
+<div class="product-info">
+<h3>Jersey UPGAME 2026</h3>
+<p class="desc">Camisa oficial premium do time UPGAME.</p>
+
+<div class="price">R$78,00</div>
+
+<a href="https://minidrop.com.br/item/times/camiseta-up-games/" target="_blank" class="link-btn">
+Ver Produto
+</a>
+
+</div>
+
+</div>
+</div>
+</section>
+
+<footer class="footer">
+© 2026 UPGAME
+</footer>
+
+<script>
+lucide.createIcons();
+
+const images = ["camisa1.png","camisa2.png"];
+let index = 0;
+
+const img = document.getElementById("productImage");
+
+document.querySelector(".arrow.left").onclick = () => {
+  index = (index - 1 + images.length) % images.length;
+  img.src = images[index];
+};
+
+document.querySelector(".arrow.right").onclick = () => {
+  index = (index + 1) % images.length;
+  img.src = images[index];
+};
+
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles = [];
+
+class Particle {
+  constructor(){
+    this.x = Math.random() * canvas.width;
+    this.y = Math.random() * canvas.height;
+    this.size = Math.random() * 2.2;
+    this.speedX = (Math.random() - 0.5) * 0.8;
+    this.speedY = (Math.random() - 0.5) * 0.8;
+    this.color = Math.random() > 0.5 ? "rgba(34,197,94,0.6)" : "rgba(59,130,246,0.6)";
+  }
+
+  update(){
+    this.x += this.speedX;
+    this.y += this.speedY;
+
+    if(this.x < 0) this.x = canvas.width;
+    if(this.x > canvas.width) this.x = 0;
+    if(this.y < 0) this.y = canvas.height;
+    if(this.y > canvas.height) this.y = 0;
+  }
+
+  draw(){
+    ctx.shadowBlur = 10;
+    ctx.shadowColor = this.color;
+
+    ctx.fillStyle = this.color;
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.fill();
+  }
+}
+
+function init(){
+  particles = [];
+  for(let i = 0; i < 90; i++){
+    particles.push(new Particle());
+  }
+}
+
+function animate(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+
+  for(let p of particles){
+    p.update();
+    p.draw();
+  }
+
+  requestAnimationFrame(animate);
+}
+
+init();
+animate();
+
+window.addEventListener("resize", () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  init();
+});
+
+function startGameSliders(){
+  const sliders = document.querySelectorAll(".img-slider");
+
+  sliders.forEach(slider => {
+    const images = slider.querySelectorAll(".game-img");
+    let index = 0;
+
+    setInterval(() => {
+      images[index].classList.remove("active");
+
+      index = (index + 1) % images.length;
+
+      images[index].classList.add("active");
+    }, 4000);
+  });
+}
+
+startGameSliders();
+</script>
+
+</body>
+</html>
