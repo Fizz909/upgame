@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>UPGAME</title>
 
 <script src="https://unpkg.com/lucide@latest"></script>
@@ -22,6 +22,7 @@ body{
   background-size: 400% 400%;
   animation: bgMove 10s ease infinite;
   color:#fff;
+  scroll-behavior: smooth;
 }
 
 @keyframes bgMove {
@@ -30,7 +31,7 @@ body{
   100% {background-position: 0% 50%;}
 }
 
-/* NAV - COM FUNDO ESCURO E VISÍVEL */
+/* NAV */
 .nav{
   position:fixed;
   width:100%;
@@ -76,6 +77,184 @@ body{
   color: transparent;
 }
 
+/* MENU HAMBURGUER - ESTILIZADO */
+.hamburger-menu {
+  display: none;
+  cursor: pointer;
+  background: rgba(34, 197, 94, 0.15);
+  border-radius: 12px;
+  padding: 10px;
+  transition: 0.3s;
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  z-index: 1001;
+}
+
+.hamburger-menu:hover {
+  background: rgba(34, 197, 94, 0.35);
+  border-color: #22c55e;
+  transform: scale(1.02);
+}
+
+.hamburger-menu svg {
+  width: 28px;
+  height: 28px;
+  color: #22c55e;
+  stroke-width: 1.8;
+}
+
+/* OVERLAY DO MENU */
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+  z-index: 998;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s ease;
+}
+
+.menu-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* MENU LATERAL */
+.side-menu {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 85%;
+  max-width: 320px;
+  height: 100vh;
+  background: linear-gradient(135deg, #0a0f1e, #03060c);
+  backdrop-filter: blur(20px);
+  border-left: 2px solid rgba(34, 197, 94, 0.4);
+  z-index: 999;
+  transition: right 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+  padding: 100px 25px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  box-shadow: -10px 0 40px rgba(0,0,0,0.5);
+}
+
+.side-menu.open {
+  right: 0;
+}
+
+/* Botão fechar */
+.close-menu {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(34, 197, 94, 0.2);
+  border: 1px solid rgba(34, 197, 94, 0.4);
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.close-menu:hover {
+  background: rgba(34, 197, 94, 0.4);
+  transform: rotate(90deg);
+  border-color: #22c55e;
+}
+
+.close-menu svg {
+  width: 24px;
+  height: 24px;
+  color: #22c55e;
+}
+
+/* Links do menu lateral */
+.menu-link {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  border-radius: 16px;
+  text-decoration: none;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  transition: 0.25s;
+  background: rgba(255,255,255,0.03);
+  margin-bottom: 8px;
+  border: 1px solid transparent;
+}
+
+.menu-link svg {
+  width: 24px;
+  height: 24px;
+  color: #22c55e;
+}
+
+.menu-link:hover {
+  background: rgba(34, 197, 94, 0.15);
+  border-color: rgba(34, 197, 94, 0.4);
+  transform: translateX(8px);
+}
+
+.menu-link.active {
+  background: linear-gradient(90deg, rgba(34,197,94,0.2), rgba(34,197,94,0.05));
+  border-left: 3px solid #22c55e;
+  border-color: #22c55e;
+}
+
+/* Versão desktop - links normais */
+.desktop-links {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.desktop-links a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  transition: 0.3s;
+  padding: 8px 16px;
+  border-radius: 40px;
+  background: transparent;
+}
+
+.desktop-links a:hover {
+  color: #22c55e;
+  background: rgba(34, 197, 94, 0.15);
+  transform: translateY(-2px);
+}
+
+.desktop-links a.active {
+  color: #22c55e;
+  background: rgba(34, 197, 94, 0.2);
+  border: 1px solid rgba(34, 197, 94, 0.4);
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .desktop-links {
+    display: none;
+  }
+  
+  .hamburger-menu {
+    display: block;
+  }
+  
+  .nav {
+    padding: 8px 20px;
+  }
+}
+
 /* HERO */
 .hero{
   height:90vh;
@@ -84,6 +263,7 @@ body{
   justify-content:center;
   align-items:center;
   text-align:center;
+  scroll-margin-top: 80px;
 }
 
 .hero-logo{
@@ -113,6 +293,7 @@ body{
   padding:80px 40px;
   max-width:1200px;
   margin:auto;
+  scroll-margin-top: 80px;
 }
 
 .section h2{
@@ -176,89 +357,163 @@ body{
 }
 
 /* STORE */
-.store{
-  display:flex;
-  justify-content:center;
+.store-section {
+  max-width: 1200px;
+  margin: 0 auto 40px auto;
+  padding: 0 20px;
+  scroll-margin-top: 80px;
 }
 
-.product{
-  display:flex;
-  gap:60px;
-  background:transparent;
-  padding:50px;
-  border-radius:20px;
-  border:none;
-  max-width:1100px;
-  width:100%;
-  align-items:center;
+.store-container {
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(12px);
+  border-radius: 28px;
+  border: 1px solid rgba(34, 197, 94, 0.4);
+  padding: 24px 28px;
+  box-shadow: 0 20px 35px -12px rgba(0,0,0,0.6), 0 0 0 1px rgba(34,197,94,0.1);
+  transition: all 0.3s ease;
 }
 
-.gallery{
-  position:relative;
+.store-container:hover {
+  border-color: #22c55e;
+  box-shadow: 0 25px 40px -12px #22c55e40;
 }
 
-.gallery img{
-  width:350px;
-  border-radius:15px;
+.store-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 28px;
 }
 
-.arrow{
-  position:absolute;
-  top:50%;
-  transform:translateY(-50%);
-  background:rgba(0,0,0,0.5);
-  border:none;
-  color:#fff;
-  font-size:24px;
-  padding:10px 15px;
-  cursor:pointer;
-  border-radius:8px;
+.store-header svg {
+  width: 28px;
+  height: 28px;
+  color: #22c55e;
+  stroke-width: 1.8;
+}
+
+.store-header h3 {
+  font-size: 26px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #fff, #86efac);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  letter-spacing: -0.5px;
+}
+
+.product {
+  display: flex;
+  gap: 60px;
+  background: transparent;
+  padding: 20px 30px;
+  border-radius: 20px;
+  border: none;
+  max-width: 1100px;
+  width: 100%;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.gallery {
+  position: relative;
+}
+
+.gallery img {
+  width: 350px;
+  border-radius: 15px;
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  transition: 0.3s;
+}
+
+.gallery img:hover {
+  border-color: #22c55e;
+  box-shadow: 0 0 15px #22c55e40;
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(34, 197, 94, 0.4);
+  color: #fff;
+  font-size: 24px;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 50%;
   backdrop-filter: blur(4px);
+  transition: 0.3s;
 }
 
-.arrow.left{ left:-20px; }
-.arrow.right{ right:-20px; }
+.arrow.left { left: -20px; }
+.arrow.right { right: -20px; }
 
-.arrow:hover{
-  background:rgba(34,197,94,0.3);
+.arrow:hover {
+  background: rgba(34, 197, 94, 0.3);
+  border-color: #22c55e;
 }
 
-.product-info h3{
-  font-size:28px;
+.product-info h3 {
+  font-size: 28px;
+  background: linear-gradient(135deg, #fff, #86efac);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
-.desc{
-  color:#aaa;
-  margin:20px 0;
+.desc {
+  color: #aaa;
+  margin: 20px 0;
+  line-height: 1.5;
 }
 
-.price{
-  font-size:28px;
-  color:#22c55e;
-  margin-bottom:20px;
+.price {
+  font-size: 32px;
+  font-weight: 800;
+  background: linear-gradient(135deg, #22c55e, #3b82f6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 20px;
 }
 
-.link-btn{
-  padding:12px 25px;
-  border-radius:10px;
-  background:linear-gradient(90deg,#22c55e,#3b82f6);
-  color:#000;
-  font-weight:bold;
-  text-decoration:none;
-  display:inline-block;
+.link-btn {
+  padding: 14px 28px;
+  border-radius: 40px;
+  background: linear-gradient(90deg, #22c55e, #3b82f6);
+  color: #000;
+  font-weight: bold;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: 0.3s;
+  border: none;
+  cursor: pointer;
 }
 
-.link-btn:hover{
-  opacity:0.9;
-  transform:scale(1.05);
-  transition:0.3s;
+.link-btn svg {
+  width: 18px;
+  height: 18px;
+  color: #000;
+  stroke-width: 2;
 }
 
-/* ESTATÍSTICAS ORG - PAINEL CURTO (SEM EMOJIS, APENAS ÍCONES LUCIde) */
+.link-btn:hover {
+  opacity: 0.9;
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #22c55e80;
+}
+
+/* ESTATÍSTICAS */
 .stats-short-panel {
   max-width: 1000px;
-  margin: -40px auto 40px auto;
+  margin: -20px auto 40px auto;
   padding: 0 20px;
+  scroll-margin-top: 80px;
 }
 
 .stats-container {
@@ -337,9 +592,6 @@ body{
   width: 32px;
   height: 32px;
   stroke-width: 1.6;
-  background: linear-gradient(135deg, #22c55e, #3b82f6);
-  -webkit-background-clip: text;
-  background-clip: text;
   color: #22c55e;
 }
 
@@ -394,29 +646,6 @@ body{
   background: linear-gradient(90deg, #22c55e, #3b82f6);
   border-radius: 4px;
   transition: width 1s ease;
-}
-
-/* responsivo */
-@media (max-width: 780px) {
-  .stats-grid-short {
-    flex-direction: column;
-  }
-  .stats-container {
-    padding: 20px;
-  }
-  .stat-number-short {
-    font-size: 28px;
-  }
-  .stats-header h3 {
-    font-size: 22px;
-  }
-  .logo img {
-    width: 38px;
-    height: 38px;
-  }
-  .logo-text {
-    font-size: 20px;
-  }
 }
 
 /* FOOTER */
@@ -616,7 +845,6 @@ body{
   opacity:1;
 }
 
-/* Responsivo geral */
 @media (max-width: 768px){
   .footer-container{
     grid-template-columns: 1fr;
@@ -629,12 +857,13 @@ body{
   
   .product{
     flex-direction: column;
-    padding: 30px;
+    padding: 20px;
+    gap: 30px;
   }
   
   .gallery img{
     width: 100%;
-    max-width: 300px;
+    max-width: 280px;
   }
   
   .logo-text{
@@ -646,23 +875,75 @@ body{
     height: 38px;
   }
   
-  .nav {
-    padding: 8px 16px;
+  .arrow.left { left: -10px; }
+  .arrow.right { right: -10px; }
+  
+  .store-container {
+    padding: 20px;
+  }
+  
+  .store-header h3 {
+    font-size: 22px;
+  }
+  
+  .hero, .section, .store-section, .stats-short-panel {
+    scroll-margin-top: 70px;
   }
 }
 </style>
 </head>
-
 <body>
 <canvas id="particles"></canvas>
+
 <div class="nav">
   <div class="logo">
     <img src="nav-logo.png" alt="UPGAME Logo">
     <div class="logo-text">UP<span>GAME</span></div>
   </div>
+  
+  <!-- Links Desktop -->
+  <div class="desktop-links">
+    <a href="#inicio" class="desktop-link">Início</a>
+    <a href="#linha-tempo" class="desktop-link">Linha do Tempo</a>
+    <a href="#loja" class="desktop-link">Loja</a>
+    <a href="#estatisticas" class="desktop-link">Estatísticas</a>
+  </div>
+  
+  <!-- Botão Hamburguer (mobile) -->
+  <div class="hamburger-menu" id="hamburgerBtn">
+    <i data-lucide="menu"></i>
+  </div>
 </div>
 
-<section class="hero">
+<!-- Overlay -->
+<div class="menu-overlay" id="menuOverlay"></div>
+
+<!-- Menu Lateral -->
+<div class="side-menu" id="sideMenu">
+  <div class="close-menu" id="closeMenuBtn">
+    <i data-lucide="x"></i>
+  </div>
+  
+  <a href="#inicio" class="menu-link" data-section="inicio">
+    <i data-lucide="home"></i>
+    <span>Início</span>
+  </a>
+  <a href="#linha-tempo" class="menu-link" data-section="linha-tempo">
+    <i data-lucide="clock"></i>
+    <span>Linha do Tempo</span>
+  </a>
+  <a href="#loja" class="menu-link" data-section="loja">
+    <i data-lucide="shopping-bag"></i>
+    <span>Loja</span>
+  </a>
+  <a href="#estatisticas" class="menu-link" data-section="estatisticas">
+    <i data-lucide="bar-chart-3"></i>
+    <span>Estatísticas</span>
+  </a>
+</div>
+
+<!-- INÍCIO -->
+<section id="inicio" class="hero">
   <img src="logo.png" class="hero-logo" alt="UPGAME Logo">
   <h1>Jogue. Evolua. <span class="gradient">Vença.</span></h1>
   <p>Organização competitiva de eSports</p>
@@ -670,9 +951,7 @@ body{
 
 <section class="section">
 <h2>Competitivo</h2>
-
 <div class="games">
-
 <div class="game-card">
   <div class="img-slider">
     <img class="game-img active" src="valorant.jpg" alt="Valorant">
@@ -683,7 +962,6 @@ body{
     <p>FPS tático competitivo</p>
   </div>
 </div>
-
 <div class="game-card">
   <div class="img-slider">
     <img class="game-img active" src="r6mobile.jpg" alt="R6 Mobile">
@@ -694,7 +972,6 @@ body{
     <p>Estratégia e ação mobile</p>
   </div>
 </div>
-
 <div class="game-card">
   <div class="img-slider">
     <img class="game-img active" src="lol1.jpg" alt="League of Legends">
@@ -705,89 +982,65 @@ body{
     <p>MOBA competitivo clássico</p>
   </div>
 </div>
-
 </div>
 </section>
 
-<section class="section">
+<!-- LINHA DO TEMPO -->
+<section id="linha-tempo" class="section">
 <h2>Linha do <span class="gradient">Tempo</span></h2>
-
 <div class="timeline">
-
 <div class="timeline-item">
 <div class="timeline-icon"><i data-lucide="flag"></i></div>
-<div class="timeline-content">
-<h3>2025 - Fundação</h3>
-<p>Criação da UP GAME com foco no cenário competitivo mobile.</p>
+<div class="timeline-content"><h3>2025 - Fundação</h3><p>Criação da UP GAME com foco no cenário competitivo mobile.</p></div>
 </div>
-</div>
-
 <div class="timeline-item">
 <div class="timeline-icon"><i data-lucide="trending-up"></i></div>
-<div class="timeline-content">
-<h3>Expansão</h3>
-<p>Organização de torneios e crescimento da comunidade competitiva.</p>
+<div class="timeline-content"><h3>Expansão</h3><p>Organização de torneios e crescimento da comunidade competitiva.</p></div>
 </div>
-</div>
-
 <div class="timeline-item">
 <div class="timeline-icon"><i data-lucide="trophy"></i></div>
-<div class="timeline-content">
-<h3>2026 - Marco</h3>
-<p>Primeiro torneio oficial de Rainbow Six Mobile com a Ubisoft.</p>
+<div class="timeline-content"><h3>2026 - Marco</h3><p>Primeiro torneio oficial de Rainbow Six Mobile com a Ubisoft.</p></div>
 </div>
-</div>
-
 <div class="timeline-item">
 <div class="timeline-icon"><i data-lucide="users"></i></div>
-<div class="timeline-content">
-<h3>Equipe</h3>
-<p>Criação do time competitivo focado em alto desempenho.</p>
+<div class="timeline-content"><h3>Equipe</h3><p>Criação do time competitivo focado em alto desempenho.</p></div>
 </div>
-</div>
-
 <div class="timeline-item">
 <div class="timeline-icon"><i data-lucide="rocket"></i></div>
-<div class="timeline-content">
-<h3>Atualidade</h3>
-<p>UP GAME consolidada como organização competitiva em crescimento.</p>
+<div class="timeline-content"><h3>Atualidade</h3><p>UP GAME consolidada como organização competitiva em crescimento.</p></div>
 </div>
-</div>
-
 </div>
 </section>
 
 <!-- LOJA -->
-<section class="section">
-<h2>Loja <span class="gradient">Oficial</span></h2>
-
-<div class="store">
-<div class="product">
-
-<div class="gallery">
-<button class="arrow left">&#10094;</button>
-<img id="productImage" src="camisa1.png" alt="Jersey UPGAME">
-<button class="arrow right">&#10095;</button>
+<div id="loja" class="store-section">
+  <div class="store-container">
+    <div class="store-header">
+      <i data-lucide="shopping-bag"></i>
+      <h3>Loja Oficial</h3>
+      <i data-lucide="tag"></i>
+    </div>
+    <div class="product">
+      <div class="gallery">
+        <button class="arrow left">&#10094;</button>
+        <img id="productImage" src="camisa1.png" alt="Jersey UPGAME">
+        <button class="arrow right">&#10095;</button>
+      </div>
+      <div class="product-info">
+        <h3>Jersey UPGAME 2026</h3>
+        <p class="desc">Camisa oficial premium do time UPGAME. Tecido tecnológico com tecnologia dry-fit, ideal para jogadores e fãs.</p>
+        <div class="price">R$ 78,00</div>
+        <a href="https://minidrop.com.br/item/times/camiseta-up-games/" target="_blank" class="link-btn">
+          <i data-lucide="shopping-cart"></i>
+          Ver Produto
+        </a>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div class="product-info">
-<h3>Jersey UPGAME 2026</h3>
-<p class="desc">Camisa oficial premium do time UPGAME.</p>
-
-<div class="price">R$78,00</div>
-
-<a href="https://minidrop.com.br/item/times/camiseta-up-games/" target="_blank" class="link-btn">
-Ver Produto
-</a>
-
-</div>
-
-</div>
-</div>
-</section>
-
-<!-- PAINEL DE ESTATÍSTICAS CURTO - SOMENTE ÍCONES LUCIde (mesmo estilo timeline) -->
-<div class="stats-short-panel">
+<!-- ESTATÍSTICAS -->
+<div id="estatisticas" class="stats-short-panel">
   <div class="stats-container">
     <div class="stats-header">
       <i data-lucide="bar-chart-3"></i>
@@ -795,63 +1048,37 @@ Ver Produto
       <i data-lucide="activity"></i>
     </div>
     <div class="stats-grid-short">
-      
-      <!-- Seguidores: ícone users -->
       <div class="stat-item-short">
-        <div class="stat-icon-short">
-          <i data-lucide="users"></i>
-        </div>
+        <div class="stat-icon-short"><i data-lucide="users"></i></div>
         <div class="stat-number-short">5M</div>
         <div class="stat-label-short">SEGUIDORES</div>
-        <div class="stat-trend">
-          <i data-lucide="trending-up"></i> +32% em 2026
-        </div>
+        <div class="stat-trend"><i data-lucide="trending-up"></i> +32% em 2026</div>
         <div class="progress-mini"><div class="progress-fill" style="width: 98%;"></div></div>
       </div>
-      
-      <!-- Visualizações: ícone eye -->
       <div class="stat-item-short">
-        <div class="stat-icon-short">
-          <i data-lucide="eye"></i>
-        </div>
+        <div class="stat-icon-short"><i data-lucide="eye"></i></div>
         <div class="stat-number-short">260K</div>
         <div class="stat-label-short">VISUALIZAÇÕES/MÊS</div>
-        <div class="stat-trend">
-          <i data-lucide="bar-chart-2"></i> média mensal
-        </div>
+        <div class="stat-trend"><i data-lucide="bar-chart-2"></i> média mensal</div>
         <div class="progress-mini"><div class="progress-fill" style="width: 74%;"></div></div>
       </div>
-      
-      <!-- Membros: ícone users (específico) -->
       <div class="stat-item-short">
-        <div class="stat-icon-short">
-          <i data-lucide="user-check"></i>
-        </div>
+        <div class="stat-icon-short"><i data-lucide="user-check"></i></div>
         <div class="stat-number-short">20</div>
         <div class="stat-label-short">MEMBROS</div>
-        <div class="stat-trend">
-          <i data-lucide="users"></i> atletas + staff
-        </div>
+        <div class="stat-trend"><i data-lucide="users"></i> atletas + staff</div>
         <div class="progress-mini"><div class="progress-fill" style="width: 100%;"></div></div>
       </div>
-      
-      <!-- Crescimento: ícone rocket ou flame -->
       <div class="stat-item-short">
-        <div class="stat-icon-short">
-          <i data-lucide="rocket"></i>
-        </div>
+        <div class="stat-icon-short"><i data-lucide="rocket"></i></div>
         <div class="stat-number-short">+124%</div>
         <div class="stat-label-short">CRESCIMENTO</div>
-        <div class="stat-trend">
-          <i data-lucide="flame"></i> seguidores (YoY)
-        </div>
+        <div class="stat-trend"><i data-lucide="flame"></i> seguidores (YoY)</div>
         <div class="progress-mini"><div class="progress-fill" style="width: 89%;"></div></div>
       </div>
     </div>
-    
-    <!-- mini legenda com ícones Lucide também -->
     <div style="display: flex; justify-content: center; gap: 18px; margin-top: 22px; flex-wrap: wrap; font-size: 11px; color: #8ba3c7; border-top: 1px solid rgba(34,197,94,0.2); padding-top: 16px;">
-      <span><i data-lucide="instagram" style="width: 12px; height: 12px; display: inline-block;"></i> 5M total followers</span>
+      <span><i data-lucide="instagram" style="width: 12px; height: 12px;"></i> 5M total followers</span>
       <span><i data-lucide="video" style="width: 12px; height: 12px;"></i> 260 mil views/mês</span>
       <span><i data-lucide="users" style="width: 12px; height: 12px;"></i> 20 membros oficiais</span>
       <span><i data-lucide="award" style="width: 12px; height: 12px;"></i> base sólida 2026</span>
@@ -859,79 +1086,150 @@ Ver Produto
   </div>
 </div>
 
-<!-- FOOTER COM ÍCONES LOCAIS E LINKS -->
 <footer class="footer">
   <div class="footer-container">
     <div class="footer-section">
       <div class="footer-tagline">Liderando o futuro dos eSports mobile com paixão e competitividade.</div>
-      <p>A UPGAME é uma organização dedicada a elevar o cenário competitivo de eSports mobile, conectando jogadores, times e fãs em uma comunidade vibrante e apaixonada.</p>
+      <p>A UPGAME é uma organização dedicada a elevar o cenário competitivo de eSports mobile.</p>
       <div class="social-links">
-        <div class="social-icon">
-          <a href="https://www.instagram.com/upgameofc?igsh=ZGZxeHF2OW53NHQw" target="_blank">
-            <img src="instagram.png" alt="Instagram">
-          </a>
-        </div>
-        <div class="social-icon">
-          <a href="https://vm.tiktok.com/ZS9LBSVEjQhW5-Ir0iV/" target="_blank">
-            <img src="tiktok.png" alt="TikTok">
-          </a>
-        </div>
-        <div class="social-icon">
-          <a href="https://discord.gg/zrKpFNWWzy" target="_blank">
-            <img src="discord.png" alt="Discord">
-          </a>
-        </div>
-        <div class="social-icon">
-          <a href="https://youtube.com/@upgameofc?si=KP37hLbGcyfPMMWf" target="_blank">
-            <img src="youtube.png" alt="YouTube">
-          </a>
-        </div>
+        <div class="social-icon"><a href="#"><img src="instagram.png" alt="Instagram"></a></div>
+        <div class="social-icon"><a href="#"><img src="tiktok.png" alt="TikTok"></a></div>
+        <div class="social-icon"><a href="#"><img src="discord.png" alt="Discord"></a></div>
+        <div class="social-icon"><a href="#"><img src="youtube.png" alt="YouTube"></a></div>
       </div>
     </div>
-    
-    <div class="footer-section">
-    </div>
-    
-    <div class="footer-section">
-      <h3>Suporte</h3>
-      <ul class="footer-links">
-        <li><a href="#">Ajuda</a></li>
-        <li><a href="#">Contato</a></li>
-      </ul>
-    </div>
+    <div class="footer-section"></div>
+    <div class="footer-section"><h3>Suporte</h3><ul class="footer-links"><li><a href="#">Ajuda</a></li><li><a href="#">Contato</a></li></ul></div>
   </div>
-  
-  <div class="footer-bottom">
-    © 2026 UPGAME
-  </div>
+  <div class="footer-bottom">© 2026 UPGAME</div>
 </footer>
 
 <script>
 lucide.createIcons();
 
+// Menu Hamburguer
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const sideMenu = document.getElementById('sideMenu');
+const menuOverlay = document.getElementById('menuOverlay');
+const closeMenuBtn = document.getElementById('closeMenuBtn');
+const menuLinks = document.querySelectorAll('.menu-link');
+const desktopLinks = document.querySelectorAll('.desktop-link');
+
+function openMenu() {
+  sideMenu.classList.add('open');
+  menuOverlay.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeMenu() {
+  sideMenu.classList.remove('open');
+  menuOverlay.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+hamburgerBtn.addEventListener('click', openMenu);
+closeMenuBtn.addEventListener('click', closeMenu);
+menuOverlay.addEventListener('click', closeMenu);
+
+// Fecha menu ao clicar em link e rola suave
+menuLinks.forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    const targetId = link.getAttribute('href');
+    const targetElement = document.querySelector(targetId);
+    if (targetElement) {
+      closeMenu();
+      targetElement.scrollIntoView({ behavior: 'smooth' });
+      
+      // Atualiza active nos links do menu
+      menuLinks.forEach(l => l.classList.remove('active'));
+      link.classList.add('active');
+      
+      desktopLinks.forEach(l => {
+        l.classList.remove('active');
+        if (l.getAttribute('href') === targetId) {
+          l.classList.add('active');
+        }
+      });
+    }
+  });
+});
+
+// Links desktop
+desktopLinks.forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    const targetId = link.getAttribute('href');
+    const targetElement = document.querySelector(targetId);
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: 'smooth' });
+      desktopLinks.forEach(l => l.classList.remove('active'));
+      link.classList.add('active');
+      
+      menuLinks.forEach(l => {
+        l.classList.remove('active');
+        if (l.getAttribute('href') === targetId) {
+          l.classList.add('active');
+        }
+      });
+    }
+  });
+});
+
+// Atualiza link ativo ao scroll
+function updateActiveLink() {
+  const sections = ['inicio', 'linha-tempo', 'loja', 'estatisticas'];
+  const scrollPos = window.scrollY + 120;
+  
+  for (let sectionId of sections) {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      const offsetTop = section.offsetTop;
+      const offsetBottom = offsetTop + section.offsetHeight;
+      if (scrollPos >= offsetTop && scrollPos < offsetBottom) {
+        desktopLinks.forEach(link => {
+          if (link.getAttribute('href') === `#${sectionId}`) {
+            link.classList.add('active');
+          } else {
+            link.classList.remove('active');
+          }
+        });
+        menuLinks.forEach(link => {
+          if (link.getAttribute('href') === `#${sectionId}`) {
+            link.classList.add('active');
+          } else {
+            link.classList.remove('active');
+          }
+        });
+        break;
+      }
+    }
+  }
+}
+
+window.addEventListener('scroll', updateActiveLink);
+updateActiveLink();
+
+// Galeria de produto
 const images = ["camisa1.png","camisa2.png"];
-let index = 0;
-
-const img = document.getElementById("productImage");
-
+let imgIndex = 0;
+const productImg = document.getElementById("productImage");
 if(document.querySelector(".arrow.left")) {
   document.querySelector(".arrow.left").onclick = () => {
-    index = (index - 1 + images.length) % images.length;
-    img.src = images[index];
+    imgIndex = (imgIndex - 1 + images.length) % images.length;
+    productImg.src = images[imgIndex];
   };
-
   document.querySelector(".arrow.right").onclick = () => {
-    index = (index + 1) % images.length;
-    img.src = images[index];
+    imgIndex = (imgIndex + 1) % images.length;
+    productImg.src = images[imgIndex];
   };
 }
 
+// Partículas
 const canvas = document.getElementById("particles");
 const ctx = canvas.getContext("2d");
-
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
-
 let particles = [];
 
 class Particle {
@@ -943,79 +1241,53 @@ class Particle {
     this.speedY = (Math.random() - 0.5) * 0.8;
     this.color = Math.random() > 0.5 ? "rgba(34,197,94,0.6)" : "rgba(59,130,246,0.6)";
   }
-
   update(){
     this.x += this.speedX;
     this.y += this.speedY;
-
     if(this.x < 0) this.x = canvas.width;
     if(this.x > canvas.width) this.x = 0;
     if(this.y < 0) this.y = canvas.height;
     if(this.y > canvas.height) this.y = 0;
   }
-
   draw(){
     ctx.shadowBlur = 10;
     ctx.shadowColor = this.color;
-
     ctx.fillStyle = this.color;
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
     ctx.fill();
   }
 }
-
-function init(){
+function initParticles(){
   particles = [];
-  for(let i = 0; i < 90; i++){
-    particles.push(new Particle());
-  }
+  for(let i = 0; i < 90; i++) particles.push(new Particle());
 }
-
-function animate(){
+function animateParticles(){
   ctx.clearRect(0,0,canvas.width,canvas.height);
-
-  for(let p of particles){
-    p.update();
-    p.draw();
-  }
-
-  requestAnimationFrame(animate);
+  for(let p of particles){ p.update(); p.draw(); }
+  requestAnimationFrame(animateParticles);
 }
-
-init();
-animate();
-
+initParticles();
+animateParticles();
 window.addEventListener("resize", () => {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
-  init();
+  initParticles();
 });
 
 function startGameSliders(){
-  const sliders = document.querySelectorAll(".img-slider");
-
-  sliders.forEach(slider => {
-    const images = slider.querySelectorAll(".game-img");
+  document.querySelectorAll(".img-slider").forEach(slider => {
+    const imgs = slider.querySelectorAll(".game-img");
     let idx = 0;
-
     setInterval(() => {
-      images[idx].classList.remove("active");
-
-      idx = (idx + 1) % images.length;
-
-      images[idx].classList.add("active");
+      imgs[idx].classList.remove("active");
+      idx = (idx + 1) % imgs.length;
+      imgs[idx].classList.add("active");
     }, 4000);
   });
 }
-
 startGameSliders();
-
-// Re-run lucide icons after dynamic content (if any)
-setTimeout(() => {
-  lucide.createIcons();
-}, 100);
+setTimeout(() => lucide.createIcons(), 100);
 </script>
-
 </body>
 </html>
