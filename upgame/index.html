@@ -30,7 +30,7 @@ body{
   100% {background-position: 0% 50%;}
 }
 
-/* NAV */
+/* NAV - COM FUNDO ESCURO E VISÍVEL */
 .nav{
   position:fixed;
   width:100%;
@@ -38,17 +38,42 @@ body{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:10px 25px;
-  background:transparent;
-  backdrop-filter: none;
-  border-bottom:none;
+  padding:8px 25px;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(34, 197, 94, 0.5);
   z-index:1000;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
 }
 
 .logo img{
-  width: 95px;
-  height:95px;
-  object-fit:cover;
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  border-radius: 12px;
+}
+
+.logo-text{
+  font-size: 26px;
+  font-weight: bold;
+  background: linear-gradient(90deg, #fff, #22c55e);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  letter-spacing: 1px;
+}
+
+.logo-text span{
+  background: linear-gradient(90deg, #22c55e, #3b82f6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 /* HERO */
@@ -62,7 +87,7 @@ body{
 }
 
 .hero-logo{
-  width:220px;
+  width:180px;
   margin-bottom:20px;
   filter:drop-shadow(0 0 20px #22c55e55);
 }
@@ -227,6 +252,171 @@ body{
   opacity:0.9;
   transform:scale(1.05);
   transition:0.3s;
+}
+
+/* ESTATÍSTICAS ORG - PAINEL CURTO (SEM EMOJIS, APENAS ÍCONES LUCIde) */
+.stats-short-panel {
+  max-width: 1000px;
+  margin: -40px auto 40px auto;
+  padding: 0 20px;
+}
+
+.stats-container {
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(12px);
+  border-radius: 28px;
+  border: 1px solid rgba(34, 197, 94, 0.4);
+  padding: 24px 28px;
+  box-shadow: 0 20px 35px -12px rgba(0,0,0,0.6), 0 0 0 1px rgba(34,197,94,0.1);
+  transition: all 0.3s ease;
+}
+
+.stats-container:hover {
+  border-color: #22c55e;
+  box-shadow: 0 25px 40px -12px #22c55e40;
+}
+
+.stats-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.stats-header svg {
+  width: 28px;
+  height: 28px;
+  color: #22c55e;
+  stroke-width: 1.8;
+}
+
+.stats-header h3 {
+  font-size: 26px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #fff, #86efac);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  letter-spacing: -0.5px;
+}
+
+.stats-grid-short {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.stat-item-short {
+  flex: 1;
+  min-width: 140px;
+  background: rgba(10, 20, 30, 0.6);
+  border-radius: 20px;
+  padding: 18px 12px;
+  text-align: center;
+  transition: transform 0.2s, background 0.2s;
+  border: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+.stat-item-short:hover {
+  transform: translateY(-5px);
+  background: rgba(20, 40, 55, 0.8);
+  border-color: #22c55e;
+}
+
+.stat-icon-short {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.stat-icon-short svg {
+  width: 32px;
+  height: 32px;
+  stroke-width: 1.6;
+  background: linear-gradient(135deg, #22c55e, #3b82f6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: #22c55e;
+}
+
+.stat-number-short {
+  font-size: 34px;
+  font-weight: 800;
+  background: linear-gradient(120deg, #ffffff, #bbf7d0);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  line-height: 1.2;
+  letter-spacing: -1px;
+}
+
+.stat-label-short {
+  font-size: 13px;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #9ca3af;
+  margin-top: 10px;
+  letter-spacing: 1px;
+}
+
+.stat-trend {
+  font-size: 11px;
+  color: #4ade80;
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.stat-trend svg {
+  width: 12px;
+  height: 12px;
+  color: #4ade80;
+}
+
+.progress-mini {
+  width: 80%;
+  height: 4px;
+  background: #1f2a3a;
+  border-radius: 4px;
+  margin: 12px auto 0;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #22c55e, #3b82f6);
+  border-radius: 4px;
+  transition: width 1s ease;
+}
+
+/* responsivo */
+@media (max-width: 780px) {
+  .stats-grid-short {
+    flex-direction: column;
+  }
+  .stats-container {
+    padding: 20px;
+  }
+  .stat-number-short {
+    font-size: 28px;
+  }
+  .stats-header h3 {
+    font-size: 22px;
+  }
+  .logo img {
+    width: 38px;
+    height: 38px;
+  }
+  .logo-text {
+    font-size: 20px;
+  }
 }
 
 /* FOOTER */
@@ -426,7 +616,7 @@ body{
   opacity:1;
 }
 
-/* Responsivo */
+/* Responsivo geral */
 @media (max-width: 768px){
   .footer-container{
     grid-template-columns: 1fr;
@@ -446,6 +636,19 @@ body{
     width: 100%;
     max-width: 300px;
   }
+  
+  .logo-text{
+    font-size: 20px;
+  }
+  
+  .logo img {
+    width: 38px;
+    height: 38px;
+  }
+  
+  .nav {
+    padding: 8px 16px;
+  }
 }
 </style>
 </head>
@@ -455,6 +658,7 @@ body{
 <div class="nav">
   <div class="logo">
     <img src="nav-logo.png" alt="UPGAME Logo">
+    <div class="logo-text">UP<span>GAME</span></div>
   </div>
 </div>
 
@@ -582,6 +786,79 @@ Ver Produto
 </div>
 </section>
 
+<!-- PAINEL DE ESTATÍSTICAS CURTO - SOMENTE ÍCONES LUCIde (mesmo estilo timeline) -->
+<div class="stats-short-panel">
+  <div class="stats-container">
+    <div class="stats-header">
+      <i data-lucide="bar-chart-3"></i>
+      <h3>UPGAME em números</h3>
+      <i data-lucide="activity"></i>
+    </div>
+    <div class="stats-grid-short">
+      
+      <!-- Seguidores: ícone users -->
+      <div class="stat-item-short">
+        <div class="stat-icon-short">
+          <i data-lucide="users"></i>
+        </div>
+        <div class="stat-number-short">5M</div>
+        <div class="stat-label-short">SEGUIDORES</div>
+        <div class="stat-trend">
+          <i data-lucide="trending-up"></i> +32% em 2026
+        </div>
+        <div class="progress-mini"><div class="progress-fill" style="width: 98%;"></div></div>
+      </div>
+      
+      <!-- Visualizações: ícone eye -->
+      <div class="stat-item-short">
+        <div class="stat-icon-short">
+          <i data-lucide="eye"></i>
+        </div>
+        <div class="stat-number-short">260K</div>
+        <div class="stat-label-short">VISUALIZAÇÕES/MÊS</div>
+        <div class="stat-trend">
+          <i data-lucide="bar-chart-2"></i> média mensal
+        </div>
+        <div class="progress-mini"><div class="progress-fill" style="width: 74%;"></div></div>
+      </div>
+      
+      <!-- Membros: ícone users (específico) -->
+      <div class="stat-item-short">
+        <div class="stat-icon-short">
+          <i data-lucide="user-check"></i>
+        </div>
+        <div class="stat-number-short">20</div>
+        <div class="stat-label-short">MEMBROS</div>
+        <div class="stat-trend">
+          <i data-lucide="users"></i> atletas + staff
+        </div>
+        <div class="progress-mini"><div class="progress-fill" style="width: 100%;"></div></div>
+      </div>
+      
+      <!-- Crescimento: ícone rocket ou flame -->
+      <div class="stat-item-short">
+        <div class="stat-icon-short">
+          <i data-lucide="rocket"></i>
+        </div>
+        <div class="stat-number-short">+124%</div>
+        <div class="stat-label-short">CRESCIMENTO</div>
+        <div class="stat-trend">
+          <i data-lucide="flame"></i> seguidores (YoY)
+        </div>
+        <div class="progress-mini"><div class="progress-fill" style="width: 89%;"></div></div>
+      </div>
+    </div>
+    
+    <!-- mini legenda com ícones Lucide também -->
+    <div style="display: flex; justify-content: center; gap: 18px; margin-top: 22px; flex-wrap: wrap; font-size: 11px; color: #8ba3c7; border-top: 1px solid rgba(34,197,94,0.2); padding-top: 16px;">
+      <span><i data-lucide="instagram" style="width: 12px; height: 12px; display: inline-block;"></i> 5M total followers</span>
+      <span><i data-lucide="video" style="width: 12px; height: 12px;"></i> 260 mil views/mês</span>
+      <span><i data-lucide="users" style="width: 12px; height: 12px;"></i> 20 membros oficiais</span>
+      <span><i data-lucide="award" style="width: 12px; height: 12px;"></i> base sólida 2026</span>
+    </div>
+  </div>
+</div>
+
 <!-- FOOTER COM ÍCONES LOCAIS E LINKS -->
 <footer class="footer">
   <div class="footer-container">
@@ -637,15 +914,17 @@ let index = 0;
 
 const img = document.getElementById("productImage");
 
-document.querySelector(".arrow.left").onclick = () => {
-  index = (index - 1 + images.length) % images.length;
-  img.src = images[index];
-};
+if(document.querySelector(".arrow.left")) {
+  document.querySelector(".arrow.left").onclick = () => {
+    index = (index - 1 + images.length) % images.length;
+    img.src = images[index];
+  };
 
-document.querySelector(".arrow.right").onclick = () => {
-  index = (index + 1) % images.length;
-  img.src = images[index];
-};
+  document.querySelector(".arrow.right").onclick = () => {
+    index = (index + 1) % images.length;
+    img.src = images[index];
+  };
+}
 
 const canvas = document.getElementById("particles");
 const ctx = canvas.getContext("2d");
@@ -718,19 +997,24 @@ function startGameSliders(){
 
   sliders.forEach(slider => {
     const images = slider.querySelectorAll(".game-img");
-    let index = 0;
+    let idx = 0;
 
     setInterval(() => {
-      images[index].classList.remove("active");
+      images[idx].classList.remove("active");
 
-      index = (index + 1) % images.length;
+      idx = (idx + 1) % images.length;
 
-      images[index].classList.add("active");
+      images[idx].classList.add("active");
     }, 4000);
   });
 }
 
 startGameSliders();
+
+// Re-run lucide icons after dynamic content (if any)
+setTimeout(() => {
+  lucide.createIcons();
+}, 100);
 </script>
 
 </body>
