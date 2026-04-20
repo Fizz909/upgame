@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
 <title>UPGAME</title>
 
 <script src="https://unpkg.com/lucide@latest"></script>
@@ -240,7 +240,24 @@ body{
   border: 1px solid rgba(34, 197, 94, 0.4);
 }
 
-/* Responsivo */
+/* ========== AJUSTES MOBILE 480px ========== */
+@media (max-width: 480px) {
+  /* 1. NAV + LOGO */
+  .nav {
+    padding: 6px 12px;
+  }
+
+  .logo-text {
+    font-size: 16px;
+  }
+
+  .logo img {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+/* Responsivo tablet */
 @media (max-width: 768px) {
   .desktop-links {
     display: none;
@@ -264,15 +281,35 @@ body{
   align-items:center;
   text-align:center;
   scroll-margin-top: 80px;
-
   background: 
     linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-    url('bg.jpg'); /* <-- TROCA AQUI */
-
+    url('bg.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
+
+/* 2. HERO MOBILE */
+@media (max-width: 480px) {
+  .hero {
+    height: 80vh;
+    padding: 0 15px;
+  }
+
+  .hero h1 {
+    font-size: 28px;
+    line-height: 1.2;
+  }
+
+  .hero p {
+    font-size: 14px;
+  }
+
+  .hero-logo {
+    width: 120px;
+  }
+}
+
 .hero-logo{
   width:180px;
   margin-bottom:20px;
@@ -310,11 +347,17 @@ body{
   color:#fff;
 }
 
-/* GAMES */
+/* 3. GAMES GRID - CORRIGIDO */
 .games{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
   gap:25px;
+}
+
+@media (max-width: 480px){
+  .games{
+    grid-template-columns:1fr;
+  }
 }
 
 /* TIMELINE */
@@ -324,6 +367,23 @@ body{
   margin:auto;
   padding-left:40px;
   border-left:2px solid #222;
+}
+
+/* 4. TIMELINE MOBILE */
+@media (max-width: 480px) {
+  .timeline {
+    padding-left: 20px;
+  }
+
+  .timeline-icon {
+    left: -22px;
+    width: 32px;
+    height: 32px;
+  }
+
+  .timeline-content {
+    padding: 15px;
+  }
 }
 
 .timeline-item{
@@ -422,6 +482,26 @@ body{
   width: 100%;
   align-items: center;
   margin: 0 auto;
+}
+
+/* 5. LOJA MOBILE */
+@media (max-width: 480px) {
+  .product {
+    gap: 20px;
+  }
+
+  .product-info h3 {
+    font-size: 22px;
+  }
+
+  .price {
+    font-size: 24px;
+  }
+
+  .link-btn {
+    width: 100%;
+    justify-content: center;
+  }
 }
 
 .gallery {
@@ -571,6 +651,21 @@ body{
   flex-wrap: wrap;
 }
 
+/* 6. ESTATÍSTICAS MOBILE */
+@media (max-width: 480px) {
+  .stats-grid-short {
+    flex-direction: column;
+  }
+
+  .stat-item-short {
+    width: 100%;
+  }
+
+  .stat-number-short {
+    font-size: 26px;
+  }
+}
+
 .stat-item-short {
   flex: 1;
   min-width: 140px;
@@ -671,6 +766,17 @@ body{
   display: grid;
   grid-template-columns: 2fr 1fr 1fr;
   gap: 40px;
+}
+
+/* 9. FOOTER MOBILE */
+@media (max-width: 480px) {
+  .footer-container {
+    padding: 0 20px;
+  }
+
+  .footer-tagline {
+    font-size: 16px;
+  }
 }
 
 .footer-section h3{
@@ -898,21 +1004,27 @@ body{
   }
 }
 
-/* CARROSSEL */
+/* CARROSSEL - CORRIGIDO */
 .carousel-wrapper {
   overflow: hidden;
   margin-top: 30px;
   width: 100%;
+  position: relative;
 }
 
 .carousel-track {
   display: flex;
   gap: 15px;
   animation: scrollCarousel 20s linear infinite;
+  width: fit-content;
+}
+
+.carousel-track:hover {
+  animation-play-state: paused;
 }
 
 .carousel-item {
-  min-width: calc(100% / 8 - 15px);
+  min-width: calc(100% / 6 - 15px);
   background: rgba(10, 20, 30, 0.7);
   border: 1px solid rgba(34, 197, 94, 0.3);
   padding: 12px;
@@ -920,6 +1032,7 @@ body{
   text-align: center;
   color: #fff;
   transition: 0.3s;
+  flex-shrink: 0;
 }
 
 /* IMAGEM CIRCULAR */
@@ -931,6 +1044,9 @@ body{
   margin-bottom: 8px;
   border: 2px solid #22c55e;
   transition: 0.3s;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* HOVER BONITO */
@@ -951,7 +1067,35 @@ body{
   100% { transform: translateX(-50%); }
 }
 
-/* VIDEO PLAYER - VERSÃO MELHORADA */
+/* RESPONSIVO MOBILE */
+@media (max-width: 768px) {
+  .carousel-item {
+    min-width: calc(100% / 4 - 15px);
+  }
+  
+  .carousel-item img {
+    width: 55px;
+    height: 55px;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-item {
+    min-width: calc(100% / 3 - 15px);
+  }
+  
+  .carousel-item img {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .carousel-track {
+    gap: 10px;
+    animation-duration: 15s;
+  }
+}
+
+/* VIDEO PLAYER - 8. AJUSTE FINO */
 .video-section {
   padding: 60px 20px;
   display: flex;
@@ -968,6 +1112,12 @@ body{
   overflow: hidden;
   border: 1px solid rgba(34, 197, 94, 0.3);
   box-shadow: 0 0 25px rgba(0,0,0,0.6);
+}
+
+@media (max-width: 480px) {
+  .video-container {
+    max-width: 280px;
+  }
 }
 
 /* vídeos sobrepostos */
@@ -1307,42 +1457,58 @@ body{
     </div>
   </div>
 </div>
-
-<!-- CARROSSEL DE CRIADORES -->
+<!-- CARROSSEL DE CRIADORES - CORRIGIDO -->
 <div class="carousel-wrapper">
   <div class="carousel-track">
     <div class="carousel-item">
-      <img src="criador1.jpg">
+      <img src="criador1.jpg" alt="Criador 1">
     </div>
     <div class="carousel-item">
-      <img src="criador2.jpg">
+      <img src="criador2.jpg" alt="Criador 2">
     </div>
     <div class="carousel-item">
-      <img src="criador3.jpg">
+      <img src="criador3.jpg" alt="Criador 3">
     </div>
     <div class="carousel-item">
-      <img src="criador4.jpg">
+      <img src="criador4.jpg" alt="Criador 4">
     </div>
     <div class="carousel-item">
-      <img src="criador5.jpg">
+      <img src="criador5.jpg" alt="Criador 5">
     </div>
     <div class="carousel-item">
-      <img src="criador6.jpg">
+      <img src="criador6.jpg" alt="Criador 6">
     </div>
     <div class="carousel-item">
-      <img src="criador7.jpg">
+      <img src="criador7.jpg" alt="Criador 7">
     </div>
     <div class="carousel-item">
-      <img src="criador8.jpg">
+      <img src="criador8.jpg" alt="Criador 8">
     </div>
-    <div class="carousel-item"><img src="criador1.jpg"><span></span></div>
-    <div class="carousel-item"><img src="criador2.jpg"><span></span></div>
-    <div class="carousel-item"><img src="criador3.jpg"><span></span></div>
-    <div class="carousel-item"><img src="criador4.jpg"><span></span></div>
-    <div class="carousel-item"><img src="criador5.jpg"><span></span></div>
-    <div class="carousel-item"><img src="criador6.jpg"><span></span></div>
-    <div class="carousel-item"><img src="criador7.jpg"><span></span></div>
-    <div class="carousel-item"><img src="criador8.jpg"><span></span></div>
+    <!-- DUPLICATA PARA EFEITO INFINITO -->
+    <div class="carousel-item">
+      <img src="criador1.jpg" alt="Criador 1">
+    </div>
+    <div class="carousel-item">
+      <img src="criador2.jpg" alt="Criador 2">
+    </div>
+    <div class="carousel-item">
+      <img src="criador3.jpg" alt="Criador 3">
+    </div>
+    <div class="carousel-item">
+      <img src="criador4.jpg" alt="Criador 4">
+    </div>
+    <div class="carousel-item">
+      <img src="criador5.jpg" alt="Criador 5">
+    </div>
+    <div class="carousel-item">
+      <img src="criador6.jpg" alt="Criador 6">
+    </div>
+    <div class="carousel-item">
+      <img src="criador7.jpg" alt="Criador 7">
+    </div>
+    <div class="carousel-item">
+      <img src="criador8.jpg" alt="Criador 8">
+    </div>
   </div>
 </div>
 
@@ -1477,7 +1643,7 @@ if(document.querySelector(".arrow.left")) {
   };
 }
 
-// Partículas
+// ========== PARTÍCULAS COM OTIMIZAÇÃO MOBILE ==========
 const canvas = document.getElementById("particles");
 const ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth;
@@ -1510,17 +1676,24 @@ class Particle {
     ctx.fill();
   }
 }
+
 function initParticles(){
   particles = [];
-  for(let i = 0; i < 90; i++) particles.push(new Particle());
+  // 10. OTIMIZAÇÃO: Menos partículas no mobile
+  const isMobile = window.innerWidth < 768;
+  const particleCount = isMobile ? 40 : 90;
+  for(let i = 0; i < particleCount; i++) particles.push(new Particle());
 }
+
 function animateParticles(){
   ctx.clearRect(0,0,canvas.width,canvas.height);
   for(let p of particles){ p.update(); p.draw(); }
   requestAnimationFrame(animateParticles);
 }
+
 initParticles();
 animateParticles();
+
 window.addEventListener("resize", () => {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
