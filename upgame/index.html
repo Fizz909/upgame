@@ -826,7 +826,7 @@ body{
 .img-slider{
   position:relative;
   width:100%;
-  height:200px;
+  height:100%;
   overflow:hidden;
   border-radius:16px;
 }
@@ -890,6 +890,202 @@ body{
     scroll-margin-top: 70px;
   }
 }
+
+/* CARROSSEL */
+.carousel-wrapper {
+  overflow: hidden;
+  margin-top: 30px;
+  width: 100%;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 15px;
+  animation: scrollCarousel 20s linear infinite;
+}
+
+.carousel-item {
+  min-width: calc(100% / 8 - 15px);
+  background: rgba(10, 20, 30, 0.7);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  padding: 12px;
+  border-radius: 12px;
+  text-align: center;
+  color: #fff;
+  transition: 0.3s;
+}
+
+/* IMAGEM CIRCULAR */
+.carousel-item img {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 8px;
+  border: 2px solid #22c55e;
+  transition: 0.3s;
+}
+
+/* HOVER BONITO */
+.carousel-item img:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 12px #22c55e;
+}
+
+.carousel-item span {
+  font-size: 12px;
+  display: block;
+  color: #ccc;
+}
+
+/* ANIMAÇÃO */
+@keyframes scrollCarousel {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* VIDEO PLAYER - VERSÃO MELHORADA */
+.video-section {
+  padding: 60px 20px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.video-container {
+  position: relative;
+  width: 100%;
+  max-width: 350px;
+  aspect-ratio: 9 / 16;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  box-shadow: 0 0 25px rgba(0,0,0,0.6);
+}
+
+/* vídeos sobrepostos */
+.video {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+/* vídeo visível */
+.video.active {
+  opacity: 1;
+}
+
+/* Botões de navegação do vídeo */
+.video-nav {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  z-index: 10;
+}
+
+.video-nav-btn {
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(34, 197, 94, 0.5);
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.3s;
+  backdrop-filter: blur(4px);
+}
+
+.video-nav-btn:hover {
+  background: rgba(34, 197, 94, 0.3);
+  border-color: #22c55e;
+  transform: scale(1.1);
+}
+
+.video-nav-btn svg {
+  width: 24px;
+  height: 24px;
+  color: #22c55e;
+}
+
+/* Indicador de título do vídeo */
+.video-title {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #22c55e;
+  backdrop-filter: blur(4px);
+  z-index: 10;
+}
+
+/* Indicador de contagem */
+.video-counter {
+  position: absolute;
+  bottom: 20px;
+  right: 15px;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  color: #fff;
+  backdrop-filter: blur(4px);
+  z-index: 10;
+}
+
+/* Botão mudo/som */
+.volume-btn {
+  position: absolute;
+  bottom: 20px;
+  left: 15px;
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(34, 197, 94, 0.5);
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.3s;
+  backdrop-filter: blur(4px);
+  z-index: 10;
+}
+
+.volume-btn:hover {
+  background: rgba(34, 197, 94, 0.3);
+  border-color: #22c55e;
+}
+
+.volume-btn svg {
+  width: 18px;
+  height: 18px;
+  color: #22c55e;
+}
+
+@media (max-width: 768px) {
+  .video-nav-btn {
+    width: 38px;
+    height: 38px;
+  }
+  .video-nav-btn svg {
+    width: 20px;
+    height: 20px;
+  }
+}
 </style>
 </head>
 <body>
@@ -901,7 +1097,6 @@ body{
     <div class="logo-text">UP<span>GAME</span></div>
   </div>
   
-  <!-- Links Desktop -->
   <div class="desktop-links">
     <a href="#inicio" class="desktop-link">Início</a>
     <a href="#linha-tempo" class="desktop-link">Linha do Tempo</a>
@@ -909,16 +1104,13 @@ body{
     <a href="#estatisticas" class="desktop-link">Estatísticas</a>
   </div>
   
-  <!-- Botão Hamburguer (mobile) -->
   <div class="hamburger-menu" id="hamburgerBtn">
     <i data-lucide="menu"></i>
   </div>
 </div>
 
-<!-- Overlay -->
 <div class="menu-overlay" id="menuOverlay"></div>
 
-<!-- Menu Lateral -->
 <div class="side-menu" id="sideMenu">
   <div class="close-menu" id="closeMenuBtn">
     <i data-lucide="x"></i>
@@ -942,7 +1134,6 @@ body{
   </a>
 </div>
 
-<!-- INÍCIO -->
 <section id="inicio" class="hero">
   <img src="logo.png" class="hero-logo" alt="UPGAME Logo">
   <h1>Jogue. Evolua. <span class="gradient">Vença.</span></h1>
@@ -983,6 +1174,30 @@ body{
   </div>
 </div>
 </div>
+</section>
+
+<!-- PLAYER DE VÍDEOS COM SOM E SETAS - CORRIGIDO -->
+<section class="video-section">
+  <div class="video-container">
+    <div class="video-title" id="videoTitle"></div>
+    <video class="video active" id="video1" playsinline></video>
+    <video class="video" id="video2" playsinline></video>
+    
+    <div class="video-nav">
+      <div class="video-nav-btn" id="prevVideoBtn">
+        <i data-lucide="chevron-left"></i>
+      </div>
+      <div class="video-nav-btn" id="nextVideoBtn">
+        <i data-lucide="chevron-right"></i>
+      </div>
+    </div>
+    
+    <div class="volume-btn" id="volumeBtn">
+      <i data-lucide="volume-2"></i>
+    </div>
+    
+    <div class="video-counter" id="videoCounter">1 / 3</div>
+  </div>
 </section>
 
 <!-- LINHA DO TEMPO -->
@@ -1039,7 +1254,7 @@ body{
   </div>
 </div>
 
-<!-- ESTATÍSTICAS -->
+<!-- ESTATÍSTICAS - CORRIGIDAS -->
 <div id="estatisticas" class="stats-short-panel">
   <div class="stats-container">
     <div class="stats-header">
@@ -1086,20 +1301,58 @@ body{
   </div>
 </div>
 
+<!-- CARROSSEL DE CRIADORES -->
+<div class="carousel-wrapper">
+  <div class="carousel-track">
+    <div class="carousel-item">
+      <img src="criador1.jpg">
+    </div>
+    <div class="carousel-item">
+      <img src="criador2.jpg">
+    </div>
+    <div class="carousel-item">
+      <img src="criador3.jpg">
+    </div>
+    <div class="carousel-item">
+      <img src="criador4.jpg">
+    </div>
+    <div class="carousel-item">
+      <img src="criador5.jpg">
+    </div>
+    <div class="carousel-item">
+      <img src="criador6.jpg">
+    </div>
+    <div class="carousel-item">
+      <img src="criador7.jpg">
+    </div>
+    <div class="carousel-item">
+      <img src="criador8.jpg">
+    </div>
+    <div class="carousel-item"><img src="criador1.jpg"><span></span></div>
+    <div class="carousel-item"><img src="criador2.jpg"><span></span></div>
+    <div class="carousel-item"><img src="criador3.jpg"><span></span></div>
+    <div class="carousel-item"><img src="criador4.jpg"><span></span></div>
+    <div class="carousel-item"><img src="criador5.jpg"><span></span></div>
+    <div class="carousel-item"><img src="criador6.jpg"><span></span></div>
+    <div class="carousel-item"><img src="criador7.jpg"><span></span></div>
+    <div class="carousel-item"><img src="criador8.jpg"><span></span></div>
+  </div>
+</div>
+
 <footer class="footer">
   <div class="footer-container">
     <div class="footer-section">
       <div class="footer-tagline">Liderando o futuro dos eSports mobile com paixão e competitividade.</div>
       <p>A UPGAME é uma organização dedicada a elevar o cenário competitivo de eSports mobile.</p>
       <div class="social-links">
-        <div class="social-icon"><a href="https://www.instagram.com/upgameofc?igsh=ZGZxeHF2OW53NHQw"><img src="instagram.png" alt="Instagram"></a></div>
-        <div class="social-icon"><a href="https://vm.tiktok.com/ZS9LBSVEjQhW5-Ir0iV/"><img src="tiktok.png" alt="TikTok"></a></div>
-        <div class="social-icon"><a href="https://discord.gg/zrKpFNWWzy"><img src="discord.png" alt="Discord"></a></div>
-        <div class="social-icon"><a href="https://youtube.com/@upgameofc?si=KP37hLbGcyfPMMWf"><img src="youtube.png" alt="YouTube"></a></div>
+        <div class="social-icon"><a href="#"><img src="instagram.png" alt="Instagram"></a></div>
+        <div class="social-icon"><a href="#"><img src="tiktok.png" alt="TikTok"></a></div>
+        <div class="social-icon"><a href="#"><img src="discord.png" alt="Discord"></a></div>
+        <div class="social-icon"><a href="#"><img src="youtube.png" alt="YouTube"></a></div>
       </div>
     </div>
     <div class="footer-section"></div>
-    <div class="footer-section"><h3>Suporte</h3><ul class="footer-links"><li><a href="https://discord.gg/zrKpFNWWzy">Ajuda</a></li><li><a href="https://mail.google.com/mail/u/0/?fs=1&tf=cm&source=mailto&to=upgameofc@gmail.com">Contato</a></li></ul></div>
+    <div class="footer-section"><h3>Suporte</h3><ul class="footer-links"><li><a href="#">Ajuda</a></li><li><a href="#">Contato</a></li></ul></div>
   </div>
   <div class="footer-bottom">© 2026 UPGAME</div>
 </footer>
@@ -1131,7 +1384,6 @@ hamburgerBtn.addEventListener('click', openMenu);
 closeMenuBtn.addEventListener('click', closeMenu);
 menuOverlay.addEventListener('click', closeMenu);
 
-// Fecha menu ao clicar em link e rola suave
 menuLinks.forEach(link => {
   link.addEventListener('click', (e) => {
     e.preventDefault();
@@ -1140,11 +1392,8 @@ menuLinks.forEach(link => {
     if (targetElement) {
       closeMenu();
       targetElement.scrollIntoView({ behavior: 'smooth' });
-      
-      // Atualiza active nos links do menu
       menuLinks.forEach(l => l.classList.remove('active'));
       link.classList.add('active');
-      
       desktopLinks.forEach(l => {
         l.classList.remove('active');
         if (l.getAttribute('href') === targetId) {
@@ -1155,7 +1404,6 @@ menuLinks.forEach(link => {
   });
 });
 
-// Links desktop
 desktopLinks.forEach(link => {
   link.addEventListener('click', (e) => {
     e.preventDefault();
@@ -1165,7 +1413,6 @@ desktopLinks.forEach(link => {
       targetElement.scrollIntoView({ behavior: 'smooth' });
       desktopLinks.forEach(l => l.classList.remove('active'));
       link.classList.add('active');
-      
       menuLinks.forEach(l => {
         l.classList.remove('active');
         if (l.getAttribute('href') === targetId) {
@@ -1176,11 +1423,9 @@ desktopLinks.forEach(link => {
   });
 });
 
-// Atualiza link ativo ao scroll
 function updateActiveLink() {
   const sections = ['inicio', 'linha-tempo', 'loja', 'estatisticas'];
   const scrollPos = window.scrollY + 120;
-  
   for (let sectionId of sections) {
     const section = document.getElementById(sectionId);
     if (section) {
@@ -1288,6 +1533,120 @@ function startGameSliders(){
 }
 startGameSliders();
 setTimeout(() => lucide.createIcons(), 100);
+
+// ========== PLAYER DE VÍDEO CORRIGIDO - SEM CONTROLES NATIVOS ==========
+const videoList = [
+  { src: "video1.mp4", title: "" },
+  { src: "video2.mp4", title: "" },
+  { src: "video3.mp4", title: "" }
+];
+
+const video1 = document.getElementById('video1');
+const video2 = document.getElementById('video2');
+const videoTitle = document.getElementById('videoTitle');
+const videoCounter = document.getElementById('videoCounter');
+const prevBtn = document.getElementById('prevVideoBtn');
+const nextBtn = document.getElementById('nextVideoBtn');
+const volumeBtn = document.getElementById('volumeBtn');
+
+let currentVideoIndex = 0;
+let isMuted = false;
+
+// Remove controles nativos permanentemente
+[video1, video2].forEach(v => {
+  v.removeAttribute('controls');
+  v.controls = false;
+  v.setAttribute('playsinline', 'true');
+});
+
+function setupVideo(videoElement, src) {
+  videoElement.src = src;
+  videoElement.volume = 0.7;
+  videoElement.load();
+}
+
+function updateUI() {
+  videoTitle.textContent = videoList[currentVideoIndex].title;
+  videoCounter.textContent = `${currentVideoIndex + 1} / ${videoList.length}`;
+  
+  const activeVideo = video1.classList.contains('active') ? video1 : video2;
+  if (isMuted) {
+    activeVideo.muted = true;
+    const icon = volumeBtn.querySelector('i');
+    if (icon) icon.setAttribute('data-lucide', 'volume-x');
+  } else {
+    activeVideo.muted = false;
+    activeVideo.volume = 0.7;
+    const icon = volumeBtn.querySelector('i');
+    if (icon) icon.setAttribute('data-lucide', 'volume-2');
+  }
+  lucide.createIcons();
+}
+
+function changeVideo(direction) {
+  const newIndex = (currentVideoIndex + direction + videoList.length) % videoList.length;
+  if (newIndex === currentVideoIndex) return;
+  
+  currentVideoIndex = newIndex;
+  
+  const currentVideo = video1.classList.contains('active') ? video1 : video2;
+  const nextVideo = video1.classList.contains('active') ? video2 : video1;
+  
+  // Prepara o próximo vídeo
+  setupVideo(nextVideo, videoList[currentVideoIndex].src);
+  
+  // Troca a visibilidade
+  currentVideo.classList.remove('active');
+  nextVideo.classList.add('active');
+  
+  // Toca o novo vídeo
+  nextVideo.play().catch(e => console.log("Aguardando interação do usuário"));
+  
+  // Para o vídeo anterior
+  currentVideo.pause();
+  currentVideo.currentTime = 0;
+  
+  updateUI();
+}
+
+function toggleMute() {
+  const activeVideo = video1.classList.contains('active') ? video1 : video2;
+  isMuted = !isMuted;
+  activeVideo.muted = isMuted;
+  updateUI();
+}
+
+// Eventos dos botões
+prevBtn.addEventListener('click', () => changeVideo(-1));
+nextBtn.addEventListener('click', () => changeVideo(1));
+volumeBtn.addEventListener('click', toggleMute);
+
+// Inicialização
+setupVideo(video1, videoList[0].src);
+setupVideo(video2, videoList[1].src);
+video1.classList.add('active');
+video2.classList.remove('active');
+currentVideoIndex = 0;
+updateUI();
+
+// Auto-play quando o usuário interagir com a página
+function startPlayback() {
+  const activeVideo = video1.classList.contains('active') ? video1 : video2;
+  activeVideo.play().catch(e => console.log("Playback precisa de interação"));
+  document.removeEventListener('click', startPlayback);
+  document.removeEventListener('touchstart', startPlayback);
+}
+document.addEventListener('click', startPlayback);
+document.addEventListener('touchstart', startPlayback);
+
+// Próximo vídeo automaticamente quando terminar
+video1.addEventListener('ended', () => {
+  if (video1.classList.contains('active')) changeVideo(1);
+});
+video2.addEventListener('ended', () => {
+  if (video2.classList.contains('active')) changeVideo(1);
+});
+
 </script>
 </body>
 </html>
