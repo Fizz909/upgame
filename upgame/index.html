@@ -31,6 +31,22 @@ body{
   100% {background-position: 0% 50%;}
 }
 
+/* ESTILO DO FUNDO GLASSMORPHISM (mesmo das estatísticas) */
+.glass-container {
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(12px);
+  border-radius: 28px;
+  border: 1px solid rgba(34, 197, 94, 0.4);
+  padding: 24px 28px;
+  box-shadow: 0 20px 35px -12px rgba(0,0,0,0.6), 0 0 0 1px rgba(34,197,94,0.1);
+  transition: all 0.3s ease;
+}
+
+.glass-container:hover {
+  border-color: #22c55e;
+  box-shadow: 0 25px 40px -12px #22c55e40;
+}
+
 /* NAV */
 .nav{
   position:fixed;
@@ -242,7 +258,6 @@ body{
 
 /* ========== AJUSTES MOBILE 480px ========== */
 @media (max-width: 480px) {
-  /* 1. NAV + LOGO */
   .nav {
     padding: 6px 12px;
   }
@@ -257,7 +272,6 @@ body{
   }
 }
 
-/* Responsivo tablet */
 @media (max-width: 768px) {
   .desktop-links {
     display: none;
@@ -289,7 +303,6 @@ body{
   background-repeat: no-repeat;
 }
 
-/* 2. HERO MOBILE */
 @media (max-width: 480px) {
   .hero {
     height: 80vh;
@@ -347,7 +360,7 @@ body{
   color:#fff;
 }
 
-/* 3. GAMES GRID - CORRIGIDO */
+/* 3. GAMES GRID */
 .games{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
@@ -369,7 +382,6 @@ body{
   border-left:2px solid #222;
 }
 
-/* 4. TIMELINE MOBILE */
 @media (max-width: 480px) {
   .timeline {
     padding-left: 20px;
@@ -484,7 +496,6 @@ body{
   margin: 0 auto;
 }
 
-/* 5. LOJA MOBILE */
 @media (max-width: 480px) {
   .product {
     gap: 20px;
@@ -651,7 +662,6 @@ body{
   flex-wrap: wrap;
 }
 
-/* 6. ESTATÍSTICAS MOBILE */
 @media (max-width: 480px) {
   .stats-grid-short {
     flex-direction: column;
@@ -768,7 +778,6 @@ body{
   gap: 40px;
 }
 
-/* 9. FOOTER MOBILE */
 @media (max-width: 480px) {
   .footer-container {
     padding: 0 20px;
@@ -1004,7 +1013,7 @@ body{
   }
 }
 
-/* CARROSSEL - CORRIGIDO */
+/* CARROSSEL */
 .carousel-wrapper {
   overflow: hidden;
   margin-top: 30px;
@@ -1035,7 +1044,6 @@ body{
   flex-shrink: 0;
 }
 
-/* IMAGEM CIRCULAR */
 .carousel-item img {
   width: 70px;
   height: 70px;
@@ -1049,7 +1057,6 @@ body{
   margin-right: auto;
 }
 
-/* HOVER BONITO */
 .carousel-item img:hover {
   transform: scale(1.1);
   box-shadow: 0 0 12px #22c55e;
@@ -1061,13 +1068,11 @@ body{
   color: #ccc;
 }
 
-/* ANIMAÇÃO */
 @keyframes scrollCarousel {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
 
-/* RESPONSIVO MOBILE */
 @media (max-width: 768px) {
   .carousel-item {
     min-width: calc(100% / 4 - 15px);
@@ -1092,155 +1097,6 @@ body{
   .carousel-track {
     gap: 10px;
     animation-duration: 15s;
-  }
-}
-
-/* VIDEO PLAYER - 8. AJUSTE FINO */
-.video-section {
-  padding: 60px 20px;
-  display: flex;
-  justify-content: center;
-  position: relative;
-}
-
-.video-container {
-  position: relative;
-  width: 100%;
-  max-width: 350px;
-  aspect-ratio: 9 / 16;
-  border-radius: 20px;
-  overflow: hidden;
-  border: 1px solid rgba(34, 197, 94, 0.3);
-  box-shadow: 0 0 25px rgba(0,0,0,0.6);
-}
-
-@media (max-width: 480px) {
-  .video-container {
-    max-width: 280px;
-  }
-}
-
-/* vídeos sobrepostos */
-.video {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0;
-  transition: opacity 0.5s ease;
-}
-
-/* vídeo visível */
-.video.active {
-  opacity: 1;
-}
-
-/* Botões de navegação do vídeo */
-.video-nav {
-  position: absolute;
-  bottom: 20px;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  z-index: 10;
-}
-
-.video-nav-btn {
-  background: rgba(0, 0, 0, 0.7);
-  border: 1px solid rgba(34, 197, 94, 0.5);
-  border-radius: 50%;
-  width: 44px;
-  height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: 0.3s;
-  backdrop-filter: blur(4px);
-}
-
-.video-nav-btn:hover {
-  background: rgba(34, 197, 94, 0.3);
-  border-color: #22c55e;
-  transform: scale(1.1);
-}
-
-.video-nav-btn svg {
-  width: 24px;
-  height: 24px;
-  color: #22c55e;
-}
-
-/* Indicador de título do vídeo */
-.video-title {
-  position: absolute;
-  top: 20px;
-  left: 0;
-  right: 0;
-  text-align: center;
-  background: rgba(0, 0, 0, 0.6);
-  padding: 8px;
-  font-size: 14px;
-  font-weight: bold;
-  color: #22c55e;
-  backdrop-filter: blur(4px);
-  z-index: 10;
-}
-
-/* Indicador de contagem */
-.video-counter {
-  position: absolute;
-  bottom: 20px;
-  right: 15px;
-  background: rgba(0, 0, 0, 0.6);
-  padding: 4px 10px;
-  border-radius: 20px;
-  font-size: 12px;
-  color: #fff;
-  backdrop-filter: blur(4px);
-  z-index: 10;
-}
-
-/* Botão mudo/som */
-.volume-btn {
-  position: absolute;
-  bottom: 20px;
-  left: 15px;
-  background: rgba(0, 0, 0, 0.6);
-  border: 1px solid rgba(34, 197, 94, 0.5);
-  border-radius: 50%;
-  width: 36px;
-  height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: 0.3s;
-  backdrop-filter: blur(4px);
-  z-index: 10;
-}
-
-.volume-btn:hover {
-  background: rgba(34, 197, 94, 0.3);
-  border-color: #22c55e;
-}
-
-.volume-btn svg {
-  width: 18px;
-  height: 18px;
-  color: #22c55e;
-}
-
-@media (max-width: 768px) {
-  .video-nav-btn {
-    width: 38px;
-    height: 38px;
-  }
-  .video-nav-btn svg {
-    width: 20px;
-    height: 20px;
   }
 }
 </style>
@@ -1297,91 +1153,72 @@ body{
   <p>Organização competitiva de eSports</p>
 </section>
 
+<!-- SEÇÃO COMPETITIVO COM FUNDO GLASS -->
 <section class="section">
-<h2>Competitivo</h2>
-<div class="games">
-<div class="game-card">
-  <div class="img-slider">
-    <img class="game-img active" src="valorant.jpg" alt="Valorant">
-    <img class="game-img" src="valorant2.jpg" alt="Valorant 2">
-  </div>
-  <div class="game-info">
-    <h3>Valorant</h3>
-    <p>FPS tático competitivo</p>
-  </div>
-</div>
-<div class="game-card">
-  <div class="img-slider">
-    <img class="game-img active" src="r6mobile.jpg" alt="R6 Mobile">
-    <img class="game-img" src="r6mobile2.png" alt="R6 Mobile 2">
-  </div>
-  <div class="game-info">
-    <h3>R6 Mobile</h3>
-    <p>Estratégia e ação mobile</p>
-  </div>
-</div>
-<div class="game-card">
-  <div class="img-slider">
-    <img class="game-img active" src="lol1.jpg" alt="League of Legends">
-    <img class="game-img" src="lol2.jpg" alt="League of Legends 2">
-  </div>
-  <div class="game-info">
-    <h3>League of Legends</h3>
-    <p>MOBA competitivo clássico</p>
-  </div>
-</div>
-</div>
-</section>
-
-<!-- PLAYER DE VÍDEOS COM SOM E SETAS - CORRIGIDO -->
-<section class="video-section">
-  <div class="video-container">
-    <div class="video-title" id="videoTitle"></div>
-    <video class="video active" id="video1" playsinline></video>
-    <video class="video" id="video2" playsinline></video>
-    
-    <div class="video-nav">
-      <div class="video-nav-btn" id="prevVideoBtn">
-        <i data-lucide="chevron-left"></i>
+  <div class="glass-container">
+    <h2>Competitivo</h2>
+    <div class="games">
+      <div class="game-card">
+        <div class="img-slider">
+          <img class="game-img active" src="valorant.jpg" alt="Valorant">
+          <img class="game-img" src="valorant2.jpg" alt="Valorant 2">
+        </div>
+        <div class="game-info">
+          <h3>Valorant</h3>
+          <p>FPS tático competitivo</p>
+        </div>
       </div>
-      <div class="video-nav-btn" id="nextVideoBtn">
-        <i data-lucide="chevron-right"></i>
+      <div class="game-card">
+        <div class="img-slider">
+          <img class="game-img active" src="r6mobile.jpg" alt="R6 Mobile">
+          <img class="game-img" src="r6mobile2.png" alt="R6 Mobile 2">
+        </div>
+        <div class="game-info">
+          <h3>R6 Mobile</h3>
+          <p>Estratégia e ação mobile</p>
+        </div>
+      </div>
+      <div class="game-card">
+        <div class="img-slider">
+          <img class="game-img active" src="lol1.jpg" alt="League of Legends">
+          <img class="game-img" src="lol2.jpg" alt="League of Legends 2">
+        </div>
+        <div class="game-info">
+          <h3>League of Legends</h3>
+          <p>MOBA competitivo clássico</p>
+        </div>
       </div>
     </div>
-    
-    <div class="volume-btn" id="volumeBtn">
-      <i data-lucide="volume-2"></i>
-    </div>
-    
-    <div class="video-counter" id="videoCounter">1 / 3</div>
   </div>
 </section>
 
 <!-- LINHA DO TEMPO -->
 <section id="linha-tempo" class="section">
-<h2>Linha do <span class="gradient">Tempo</span></h2>
-<div class="timeline">
-<div class="timeline-item">
-<div class="timeline-icon"><i data-lucide="flag"></i></div>
-<div class="timeline-content"><h3>2025 - Fundação</h3><p>Criação da UP GAME com foco no cenário competitivo mobile.</p></div>
-</div>
-<div class="timeline-item">
-<div class="timeline-icon"><i data-lucide="trending-up"></i></div>
-<div class="timeline-content"><h3>Expansão</h3><p>Organização de torneios e crescimento da comunidade competitiva.</p></div>
-</div>
-<div class="timeline-item">
-<div class="timeline-icon"><i data-lucide="trophy"></i></div>
-<div class="timeline-content"><h3>2026 - Marco</h3><p>Primeiro torneio oficial de Rainbow Six Mobile com a Ubisoft.</p></div>
-</div>
-<div class="timeline-item">
-<div class="timeline-icon"><i data-lucide="users"></i></div>
-<div class="timeline-content"><h3>Equipe</h3><p>Criação do time competitivo focado em alto desempenho.</p></div>
-</div>
-<div class="timeline-item">
-<div class="timeline-icon"><i data-lucide="rocket"></i></div>
-<div class="timeline-content"><h3>Atualidade</h3><p>UP GAME consolidada como organização competitiva em crescimento.</p></div>
-</div>
-</div>
+  <div class="glass-container">
+    <h2>Linha do <span class="gradient">Tempo</span></h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-icon"><i data-lucide="flag"></i></div>
+        <div class="timeline-content"><h3>2025 - Fundação</h3><p>Criação da UP GAME com foco no cenário competitivo mobile.</p></div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-icon"><i data-lucide="trending-up"></i></div>
+        <div class="timeline-content"><h3>Expansão</h3><p>Organização de torneios e crescimento da comunidade competitiva.</p></div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-icon"><i data-lucide="trophy"></i></div>
+        <div class="timeline-content"><h3>2026 - Marco</h3><p>Primeiro torneio oficial de Rainbow Six Mobile com a Ubisoft.</p></div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-icon"><i data-lucide="users"></i></div>
+        <div class="timeline-content"><h3>Equipe</h3><p>Criação do time competitivo focado em alto desempenho.</p></div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-icon"><i data-lucide="rocket"></i></div>
+        <div class="timeline-content"><h3>Atualidade</h3><p>UP GAME consolidada como organização competitiva em crescimento.</p></div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- LOJA -->
@@ -1411,7 +1248,7 @@ body{
   </div>
 </div>
 
-<!-- ESTATÍSTICAS - CORRIGIDAS -->
+<!-- ESTATÍSTICAS -->
 <div id="estatisticas" class="stats-short-panel">
   <div class="stats-container">
     <div class="stats-header">
@@ -1457,58 +1294,26 @@ body{
     </div>
   </div>
 </div>
-<!-- CARROSSEL DE CRIADORES - CORRIGIDO -->
+
+<!-- CARROSSEL DE CRIADORES -->
 <div class="carousel-wrapper">
   <div class="carousel-track">
-    <div class="carousel-item">
-      <img src="criador1.jpg" alt="Criador 1">
-    </div>
-    <div class="carousel-item">
-      <img src="criador2.jpg" alt="Criador 2">
-    </div>
-    <div class="carousel-item">
-      <img src="criador3.jpg" alt="Criador 3">
-    </div>
-    <div class="carousel-item">
-      <img src="criador4.jpg" alt="Criador 4">
-    </div>
-    <div class="carousel-item">
-      <img src="criador5.jpg" alt="Criador 5">
-    </div>
-    <div class="carousel-item">
-      <img src="criador6.jpg" alt="Criador 6">
-    </div>
-    <div class="carousel-item">
-      <img src="criador7.jpg" alt="Criador 7">
-    </div>
-    <div class="carousel-item">
-      <img src="criador8.jpg" alt="Criador 8">
-    </div>
-    <!-- DUPLICATA PARA EFEITO INFINITO -->
-    <div class="carousel-item">
-      <img src="criador1.jpg" alt="Criador 1">
-    </div>
-    <div class="carousel-item">
-      <img src="criador2.jpg" alt="Criador 2">
-    </div>
-    <div class="carousel-item">
-      <img src="criador3.jpg" alt="Criador 3">
-    </div>
-    <div class="carousel-item">
-      <img src="criador4.jpg" alt="Criador 4">
-    </div>
-    <div class="carousel-item">
-      <img src="criador5.jpg" alt="Criador 5">
-    </div>
-    <div class="carousel-item">
-      <img src="criador6.jpg" alt="Criador 6">
-    </div>
-    <div class="carousel-item">
-      <img src="criador7.jpg" alt="Criador 7">
-    </div>
-    <div class="carousel-item">
-      <img src="criador8.jpg" alt="Criador 8">
-    </div>
+    <div class="carousel-item"><img src="criador1.jpg" alt="Criador 1"></div>
+    <div class="carousel-item"><img src="criador2.jpg" alt="Criador 2"></div>
+    <div class="carousel-item"><img src="criador3.jpg" alt="Criador 3"></div>
+    <div class="carousel-item"><img src="criador4.jpg" alt="Criador 4"></div>
+    <div class="carousel-item"><img src="criador5.jpg" alt="Criador 5"></div>
+    <div class="carousel-item"><img src="criador6.jpg" alt="Criador 6"></div>
+    <div class="carousel-item"><img src="criador7.jpg" alt="Criador 7"></div>
+    <div class="carousel-item"><img src="criador8.jpg" alt="Criador 8"></div>
+    <div class="carousel-item"><img src="criador1.jpg" alt="Criador 1"></div>
+    <div class="carousel-item"><img src="criador2.jpg" alt="Criador 2"></div>
+    <div class="carousel-item"><img src="criador3.jpg" alt="Criador 3"></div>
+    <div class="carousel-item"><img src="criador4.jpg" alt="Criador 4"></div>
+    <div class="carousel-item"><img src="criador5.jpg" alt="Criador 5"></div>
+    <div class="carousel-item"><img src="criador6.jpg" alt="Criador 6"></div>
+    <div class="carousel-item"><img src="criador7.jpg" alt="Criador 7"></div>
+    <div class="carousel-item"><img src="criador8.jpg" alt="Criador 8"></div>
   </div>
 </div>
 
@@ -1643,7 +1448,7 @@ if(document.querySelector(".arrow.left")) {
   };
 }
 
-// ========== PARTÍCULAS COM OTIMIZAÇÃO MOBILE ==========
+// Partículas
 const canvas = document.getElementById("particles");
 const ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth;
@@ -1679,7 +1484,6 @@ class Particle {
 
 function initParticles(){
   particles = [];
-  // 10. OTIMIZAÇÃO: Menos partículas no mobile
   const isMobile = window.innerWidth < 768;
   const particleCount = isMobile ? 40 : 90;
   for(let i = 0; i < particleCount; i++) particles.push(new Particle());
@@ -1713,120 +1517,6 @@ function startGameSliders(){
 }
 startGameSliders();
 setTimeout(() => lucide.createIcons(), 100);
-
-// ========== PLAYER DE VÍDEO CORRIGIDO - SEM CONTROLES NATIVOS ==========
-const videoList = [
-  { src: "video1.mp4", title: "" },
-  { src: "video2.mp4", title: "" },
-  { src: "video3.mp4", title: "" }
-];
-
-const video1 = document.getElementById('video1');
-const video2 = document.getElementById('video2');
-const videoTitle = document.getElementById('videoTitle');
-const videoCounter = document.getElementById('videoCounter');
-const prevBtn = document.getElementById('prevVideoBtn');
-const nextBtn = document.getElementById('nextVideoBtn');
-const volumeBtn = document.getElementById('volumeBtn');
-
-let currentVideoIndex = 0;
-let isMuted = false;
-
-// Remove controles nativos permanentemente
-[video1, video2].forEach(v => {
-  v.removeAttribute('controls');
-  v.controls = false;
-  v.setAttribute('playsinline', 'true');
-});
-
-function setupVideo(videoElement, src) {
-  videoElement.src = src;
-  videoElement.volume = 0.7;
-  videoElement.load();
-}
-
-function updateUI() {
-  videoTitle.textContent = videoList[currentVideoIndex].title;
-  videoCounter.textContent = `${currentVideoIndex + 1} / ${videoList.length}`;
-  
-  const activeVideo = video1.classList.contains('active') ? video1 : video2;
-  if (isMuted) {
-    activeVideo.muted = true;
-    const icon = volumeBtn.querySelector('i');
-    if (icon) icon.setAttribute('data-lucide', 'volume-x');
-  } else {
-    activeVideo.muted = false;
-    activeVideo.volume = 0.7;
-    const icon = volumeBtn.querySelector('i');
-    if (icon) icon.setAttribute('data-lucide', 'volume-2');
-  }
-  lucide.createIcons();
-}
-
-function changeVideo(direction) {
-  const newIndex = (currentVideoIndex + direction + videoList.length) % videoList.length;
-  if (newIndex === currentVideoIndex) return;
-  
-  currentVideoIndex = newIndex;
-  
-  const currentVideo = video1.classList.contains('active') ? video1 : video2;
-  const nextVideo = video1.classList.contains('active') ? video2 : video1;
-  
-  // Prepara o próximo vídeo
-  setupVideo(nextVideo, videoList[currentVideoIndex].src);
-  
-  // Troca a visibilidade
-  currentVideo.classList.remove('active');
-  nextVideo.classList.add('active');
-  
-  // Toca o novo vídeo
-  nextVideo.play().catch(e => console.log("Aguardando interação do usuário"));
-  
-  // Para o vídeo anterior
-  currentVideo.pause();
-  currentVideo.currentTime = 0;
-  
-  updateUI();
-}
-
-function toggleMute() {
-  const activeVideo = video1.classList.contains('active') ? video1 : video2;
-  isMuted = !isMuted;
-  activeVideo.muted = isMuted;
-  updateUI();
-}
-
-// Eventos dos botões
-prevBtn.addEventListener('click', () => changeVideo(-1));
-nextBtn.addEventListener('click', () => changeVideo(1));
-volumeBtn.addEventListener('click', toggleMute);
-
-// Inicialização
-setupVideo(video1, videoList[0].src);
-setupVideo(video2, videoList[1].src);
-video1.classList.add('active');
-video2.classList.remove('active');
-currentVideoIndex = 0;
-updateUI();
-
-// Auto-play quando o usuário interagir com a página
-function startPlayback() {
-  const activeVideo = video1.classList.contains('active') ? video1 : video2;
-  activeVideo.play().catch(e => console.log("Playback precisa de interação"));
-  document.removeEventListener('click', startPlayback);
-  document.removeEventListener('touchstart', startPlayback);
-}
-document.addEventListener('click', startPlayback);
-document.addEventListener('touchstart', startPlayback);
-
-// Próximo vídeo automaticamente quando terminar
-video1.addEventListener('ended', () => {
-  if (video1.classList.contains('active')) changeVideo(1);
-});
-video2.addEventListener('ended', () => {
-  if (video2.classList.contains('active')) changeVideo(1);
-});
-
 </script>
 </body>
 </html>
